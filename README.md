@@ -1,9 +1,7 @@
 # 🏖️ Tripadvisor Clone Website
-
-### 🌍 Live Demo  
-🔗 [View Project on GitHub Pages](https://gayathri-lab-design.github.io/tripadvisor-clone/)  
----
-
+### 🌍 Live Demo
+🔗 [View Project on GitHub Pages](https://gayathri-lab-design.github.io/trip-advisor-clone/)
+...
 ## 🧩 Project Overview  
 This project is a **front-end clone of the Tripadvisor homepage**, built using **HTML5** and **CSS3**.  
 It replicates the clean, modern, and responsive design of the real Tripadvisor website, including sections like:
