@@ -1,34 +1,39 @@
 name: Deploy to GitHub Pages
 
-# Trigger on pushes to main (so saving this file will trigger it)
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-
     steps:
-      - name: Checkout repository (no submodules)
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           submodules: false
           fetch-depth: 0
 
-      - name: Setup GitHub Pages (required)
-        uses: actions/configure-pages@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          # publish files from repo root — change if your site is in a subfolder
-          path: .
+          path: .    # 👈 deploys from the root folder (where your index.html is)
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        id: deployment
+        uses: actions/deploy-pages@v4
